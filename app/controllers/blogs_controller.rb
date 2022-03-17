@@ -19,7 +19,6 @@ class BlogsController < ApplicationController
     end
   end
   def show
-    @blog = Blog.find(params[:id])
   end
   def edit    
   end
@@ -34,6 +33,10 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     redirect_to blogs_path, notice:"J'ai supprimé le blog !"
+  end
+  def confirm
+    @blog = Blog.new(blog_params)
+    render :new if @blog.invalid?
   end
   private
 
